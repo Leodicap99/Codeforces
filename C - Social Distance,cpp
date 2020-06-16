@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+#define int long long
+# define pii pair<int,int>
+const int maxn=1e6+5;
+signed main() { 
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+    #endif
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,k,ans=0;
+        cin>>n>>k;
+        string str;
+        cin>>str;
+        set<int> s;
+        s.insert(-k-1);
+        s.insert(n+k);
+        for(int i=0;i<n;i++)
+            if(str[i]=='1')s.insert(i);
+        for(int i=0;i<n;i++)
+        {
+            if(!s.count(i) && (*(s.lower_bound(i))>i+k && *(--(s.lower_bound(i)))<i-k))
+                s.insert(i),ans++;
+        }
+        cout<<ans<<endl;
+    }
+}
