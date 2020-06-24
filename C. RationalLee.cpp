@@ -19,25 +19,24 @@ signed main() {
 		cin>>n>>k;
 		vector<int> arr(n),x(k);
 		for(int i=0;i<n;i++)cin>>arr[i];
-		sort(arr.rbegin(),arr.rend());
+		sort(arr.begin(),arr.end());
 		for(int i=0;i<k;i++)cin>>x[i];
 		sort(x.begin(),x.end());
-		int ans=0;
-		for(int i=0;i<k;i++)
-			ans+=arr[i];
-		int i=k-1,z=0;
-		for(int j=0;j<k;j++)
+		int m=0,ans=0;
+		while(x[m]==1)
 		{
-			if(x[j]==1)
-			{
-				ans+=arr[z];
-				z++;
-			}
-			else
-			{
-				i+=x[j]-1;
-				ans+=arr[i];
-			}
+			ans+=2*arr[n-1];
+			n--;
+			m++;
+		}
+		int l=0,r=n-1;
+		k--;
+		while(k>=m)
+		{
+			ans+=arr[l]+arr[r];
+			l+=x[k]-1;
+			r--;
+			k--;
 		}
 		cout<<ans<<endl;
 	}
